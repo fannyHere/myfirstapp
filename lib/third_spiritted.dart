@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class spiritted extends StatelessWidget {
+class spiritted extends StatefulWidget {
   const spiritted({super.key});
+
+  @override
+  State<spiritted> createState() => _spirittedState();
+}
+
+class _spirittedState extends State<spiritted> {
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -9,17 +16,51 @@ class spiritted extends StatelessWidget {
     final MediaQueryWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          Container(
-            height: MediaQueryHeight * 0.3,
-            width: MediaQueryWidth,
-            child: Image.asset(
-              "assets/japan/sample3_spi.jpg",
-              fit: BoxFit.fill,
-            ),
+          Stack(
+            children: [
+              Container(
+                height: MediaQueryHeight * 0.3,
+                width: MediaQueryWidth,
+                child: Image.asset(
+                  "assets/japan/sample3_spi.jpg",
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  child: IconButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.favorite,
+                      color: isFavorite ? Colors.red : Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  child: IconButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
           SizedBox(height: 30),
           Column(

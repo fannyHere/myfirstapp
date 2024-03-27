@@ -1,112 +1,152 @@
-import 'package:flutter/material.dart';
+// import 'package:dicoding_farm_house/tourism_place.dart';
+// import 'package:flutter/material.dart';
 
-class med_query extends StatelessWidget {
-  const med_query({super.key});
+// var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
 
-  @override
-  Widget build(BuildContext context) {
-    final MediaQueryHeight =
-        MediaQuery.of(context).size.height; //full untuk satu layar height
-    final MediaQueryWidth =
-        MediaQuery.of(context).size.width; //fulluntuk satu layar width
+// class DetailScreen extends StatelessWidget {
+//   final TourismPlace place;
 
-    //dibuat variable function untuk dimasukin ke dalam body height
-    final myAppbar = AppBar(
-      title: Text("media query"),
-      backgroundColor: Colors.blue,
-    );
+//   const DetailScreen({Key? key, required this.place}) : super(key: key);
 
-    //tinggi all mediaqueryheight setelah dikurang sama myAppbar dan dikurang padding top (icon jam, baterai dll)
-    final bodyHeight = MediaQueryHeight -
-        myAppbar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.stretch,
+//           children: <Widget>[
+//             Stack(
+//               children: <Widget>[
+//                 Image.asset(place.imageAsset),
+//                 SafeArea(
+//                   child: Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: Row(
+//                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                       children: [
+//                         CircleAvatar(
+//                           backgroundColor: Colors.grey,
+//                           child: IconButton(
+//                             icon: const Icon(
+//                               Icons.arrow_back,
+//                               color: Colors.white,
+//                             ),
+//                             onPressed: () {
+//                               Navigator.pop(context);
+//                             },
+//                           ),
+//                         ),
+//                         const FavoriteButton(),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Container(
+//               margin: const EdgeInsets.only(top: 16.0),
+//               child: Text(
+//                 place.name,
+//                 textAlign: TextAlign.center,
+//                 style: const TextStyle(
+//                   fontSize: 30.0,
+//                   fontFamily: 'Staatliches',
+//                 ),
+//               ),
+//             ),
+//             Container(
+//               margin: const EdgeInsets.symmetric(vertical: 16.0),
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                 children: <Widget>[
+//                   Column(
+//                     children: <Widget>[
+//                       const Icon(Icons.calendar_today),
+//                       const SizedBox(height: 8.0),
+//                       Text(
+//                         place.openDays,
+//                         style: informationTextStyle,
+//                       ),
+//                     ],
+//                   ),
+//                   Column(
+//                     children: <Widget>[
+//                       const Icon(Icons.access_time),
+//                       const SizedBox(height: 8.0),
+//                       Text(
+//                         place.openTime,
+//                         style: informationTextStyle,
+//                       ),
+//                     ],
+//                   ),
+//                   Column(
+//                     children: <Widget>[
+//                       const Icon(Icons.monetization_on),
+//                       const SizedBox(height: 8.0),
+//                       Text(
+//                         place.ticketPrice,
+//                         style: informationTextStyle,
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             Container(
+//               padding: const EdgeInsets.all(16.0),
+//               child: Text(
+//                 place.description,
+//                 textAlign: TextAlign.center,
+//                 style: const TextStyle(
+//                   fontSize: 16.0,
+//                   fontFamily: 'Oxygen',
+//                 ),
+//               ),
+//             ),
+//             SizedBox(
+//               height: 150,
+//               child: ListView(
+//                 scrollDirection: Axis.horizontal,
+//                 children: place.imageUrls.map((url) {
+//                   return Padding(
+//                     padding: const EdgeInsets.all(4.0),
+//                     child: ClipRRect(
+//                       borderRadius: BorderRadius.circular(10),
+//                       child: Image.network(url),
+//                     ),
+//                   );
+//                 }).toList(),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-    final bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+// class FavoriteButton extends StatefulWidget {
+//   const FavoriteButton({Key? key}) : super(key: key);
 
-    return Scaffold(
-        appBar: myAppbar,
-        body: Center(
-          child: (isLandscape) //klo landscape ?maka ini
-              ? Column(
-                  children: [
-                    Container(
-                      height: bodyHeight * 0.5, //klolandscpae
-                      //width: 400, //ini adalah hardcode
-                      width: MediaQueryWidth, //width penuh pakai media query
-                      color: Colors.amber,
-                    ),
-                    Container(
-                      //height: 300, //hardcode
-                      //mediaquery itu panjanganya dari atas device sampai ke bawah device
-                      height: bodyHeight * 0.5, //klo landscpae
-                      color: Colors.deepOrange,
+//   @override
+//   _FavoriteButtonState createState() => _FavoriteButtonState();
+// }
 
-                      //klo TAMPILANNYA LISTVIEW:
-                      // child: ListView.builder(
-                      //   itemCount: 100,
-                      //   itemBuilder: (context, index) {
-                      //     return ListTile(
-                      //       //contentPadding: EdgeInsets.all(20),
-                      //       title: Text("Fany"),
-                      //       subtitle: Text("description of me"),
-                      //       leading: CircleAvatar(),
-                      //       trailing: Text("10:00 PM"),
+// class _FavoriteButtonState extends State<FavoriteButton> {
+//   bool isFavorite = false;
 
-                      //       //tileColor: Colors.blueGrey,
-                      //     );
-                      //   },
-                      // ),
-
-                      //KLO TAMPILANNYA GRIDVIEW
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 10,
-                        ),
-                        itemCount: 100,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text("Fany"),
-                            subtitle: Text("description of me"),
-                            leading: CircleAvatar(),
-                            trailing: Text("10:00 PM"),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )
-              : Column(
-                  //klo lainnya (alias ga landcape) maka ini
-                  children: [
-                    Container(
-                      height: bodyHeight * 0.3,
-                      //width: 400, //ini adalah hardcode
-                      width: MediaQueryWidth, //width penuh pakai media query
-                      color: Colors.amber,
-                    ),
-                    Container(
-                        //height: 300, //hardcode
-                        //mediaquery itu panjanganya dari atas device sampai ke bawah device
-                        height: bodyHeight * 0.7,
-                        color: Colors.deepOrange,
-                        child: ListView.builder(
-                          itemCount: 100,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              //contentPadding: EdgeInsets.all(20),
-                              title: Text("Fany"),
-                              subtitle: Text("description of me"),
-                              leading: CircleAvatar(),
-                              trailing: Text("10:00 PM"),
-
-                              //tileColor: Colors.blueGrey,
-                            );
-                          },
-                        )),
-                  ],
-                ),
-        ));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return IconButton(
+//       icon: Icon(
+//         isFavorite ? Icons.favorite : Icons.favorite_border,
+//         color: Colors.red,
+//       ),
+//       onPressed: () {
+//         setState(() {
+//           isFavorite = !isFavorite;
+//         });
+//       },
+//     );
+//   }
+// }

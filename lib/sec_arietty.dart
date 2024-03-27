@@ -1,25 +1,65 @@
 import 'package:flutter/material.dart';
 
-class arietty extends StatelessWidget {
+class arietty extends StatefulWidget {
   const arietty({super.key});
 
+  @override
+  State<arietty> createState() => _ariettyState();
+}
+
+class _ariettyState extends State<arietty> {
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     final MediaQueryHeight = MediaQuery.of(context).size.height;
     final MediaQueryWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          Container(
-            height: MediaQueryHeight * 0.3,
-            width: MediaQueryWidth,
-            child: Image.asset(
-              "assets/japan/sample4_arri.jpg",
-              fit: BoxFit.fill,
-            ),
+          Stack(
+            children: [
+              Container(
+                height: MediaQueryHeight * 0.3,
+                width: MediaQueryWidth,
+                child: Image.asset(
+                  "assets/japan/sample4_arri.jpg",
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: EdgeInsets.all(16),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      )),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  margin: EdgeInsets.all(16),
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.favorite,
+                      color: isFavorite ? Colors.red : Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 30),
           Column(

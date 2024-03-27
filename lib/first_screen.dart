@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_favorite_film/fourth_only.dart';
 import 'package:my_favorite_film/third_spiritted.dart';
-//123
 import 'sec_arietty.dart';
 
-class first_screen extends StatefulWidget {
+class first_screen extends StatelessWidget {
   const first_screen({super.key});
 
-  @override
-  State<first_screen> createState() => _first_screenState();
-}
-
-class _first_screenState extends State<first_screen> {
   @override
   Widget build(BuildContext context) {
     final MediaQueryHeight =
